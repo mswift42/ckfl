@@ -28,4 +28,22 @@ List<Recipe> recipes = [
     "normal",
     "30 min.",
   ),
+  Recipe(
+    "Grüne Bohnen mit Speck",
+    "Speckbohnen",
+    "https://www.chefkoch.de/rezepte/2406611380140966/Gruene-Bohnen-mit-Speck.html",
+    "https://static.chefkoch-cdn.de/rs/bilder/240661/gruene-bohnen-mit-speck-1135575-150x150.jpg",
+    "4.67",
+    "normal",
+    "25 min.",
+  ),
+  Recipe(
+    "Grüne Bohnen mit Kasseler, geschmort",
+    "Zwiebeln in Butter anbraten. Kasselerwürfel dazu geben und ebenfalls anbraten. Die Grünen Bohnen (Menge je nach Geschmack) in Stüc...",
+    "https://www.chefkoch.de/rezepte/103621042299597/Gruene-Bohnen-mit-Kasseler-geschmort.html",
+    "https://static.chefkoch-cdn.de/rs/bilder/10362/gruene-bohnen-mit-kasseler-geschmort-1135594-150x150.jpg",
+    "4.5",
+    "normal",
+    "30 min.",
+  ),
 ];
