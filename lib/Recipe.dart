@@ -23,9 +23,9 @@ class RecipeDetail {
   List<RecipeIngredient> ingredients;
   String method;
 
-  RecipeDetail(this.title, this.rating, this.difficulty,
+  RecipeDetail({this.title, this.rating, this.difficulty,
       this.preptime, this.cookingtime, this.thumbnail,
-      this.ingredients, this.method);
+      this.ingredients, this.method});
 }
 
 class RecipeIngredient {
