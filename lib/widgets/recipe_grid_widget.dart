@@ -26,23 +26,30 @@ class _RecipeSearchItem extends StatelessWidget {
     return Container(
       child: GridTile(
         child: Image.network(_recipe.thumbnail,
-        fit: BoxFit.cover,
+          fit: BoxFit.cover,
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black26,
-          title: Text(_recipe.title),
+          title: _RecipeSearchItemTitle(_recipe.title),
         ),
 
       ),
     );
   }
 }
+
 class _RecipeSearchItemTitle extends StatelessWidget {
   final String _title;
+
   _RecipeSearchItemTitle(this._title);
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      alignment: Alignment.centerLeft,
+      child: Text(_title),
+    )
   }
 }
 
