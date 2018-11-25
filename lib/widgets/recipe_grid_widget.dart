@@ -9,7 +9,7 @@ class RecipeGrid extends StatelessWidget {
     return Container(
       child: GridView.extent(
           maxCrossAxisExtent: 260.0,
-        children: <Widget>[],
+        children: _recipes.map((i) => _RecipeSearchItem(i)).toList()
       ),
       
 
@@ -18,15 +18,8 @@ class RecipeGrid extends StatelessWidget {
 }
 
 class _RecipeSearchItem extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String url;
-  final String thumbnail;
-  final String rating;
-  final String difficulty;
-  final String preptime;
-  _RecipeSearchItem(this.title, this.subtitle, this.url, this.thumbnail,
-      this.rating, this.difficulty, this.preptime);
+  final Recipe _recipe;
+  _RecipeSearchItem(this._recipe);
   @override
   Widget build(BuildContext context) {
     return Container();
