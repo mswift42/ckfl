@@ -1,6 +1,6 @@
 import 'package:ckfl/Recipe.dart';
 
-List<Recipe> recipes = [
+List<Recipe> mockresultlist = [
   Recipe(
     "Grüne Bohnen im Speckmantel",
     "Bohnen waschen und die Spitzen abschneiden. Bohnenkraut, Knoblauch, zerdrückte Pfefferkörner und Salz mit Öl kurz anrösten. 2 Lite...",
