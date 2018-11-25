@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ckfl/widgets/recipe_grid_widget.dart';
+import 'package:ckfl/mockrecipes.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: RecipeGrid(mockresultlist),
     );
   }
 }
