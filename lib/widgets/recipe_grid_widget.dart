@@ -29,8 +29,9 @@ class _RecipeSearchItem extends StatelessWidget {
           fit: BoxFit.cover,
         ),
         footer: GridTileBar(
-          backgroundColor: Colors.black26,
+          backgroundColor: Colors.black54,
           title: _RecipeSearchItemTitle(_recipe.title),
+          subtitle: _RecipeSearchItemRating(_recipe.rating),
         ),
 
       ),
@@ -49,7 +50,19 @@ class _RecipeSearchItemTitle extends StatelessWidget {
       fit: BoxFit.scaleDown,
       alignment: Alignment.centerLeft,
       child: Text(_title),
-    )
+    );
   }
 }
+
+class _RecipeSearchItemRating extends StatelessWidget {
+  final String _rating;
+  _RecipeSearchItemRating(this._rating);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(_rating),
+    );
+  }
+}
+
 
