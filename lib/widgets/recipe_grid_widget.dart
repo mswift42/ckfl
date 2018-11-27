@@ -34,10 +34,9 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
       child: GridTile(
         child: Hero(
           tag: widget.recipe.thumbnail,
-          child: (
-              Image.network(widget.recipe.thumbnail,
-                fit: BoxFit.cover,
-              ),
+          child: Image.network(
+            widget.recipe.thumbnail,
+            fit: BoxFit.cover,
           ),
         ),
         footer: GridTileBar(
@@ -45,7 +44,6 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
           title: _RecipeSearchItemTitle(widget.recipe.title),
           subtitle: _RecipeSearchItemRating(widget.recipe.rating),
         ),
-
       ),
     );
   }
@@ -93,4 +91,3 @@ class _RecipeViewerState extends State<RecipeViewer> {
     return Container();
   }
 }
-
