@@ -25,8 +25,13 @@ class _RecipeSearchItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: GridTile(
-        child: Image.network(_recipe.thumbnail,
-          fit: BoxFit.cover,
+        child: Hero(
+          tag: _recipe.thumbnail,
+          child: (
+              Image.network(_recipe.thumbnail,
+                fit: BoxFit.cover,
+              ),
+          ),
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black54,
@@ -56,7 +61,9 @@ class _RecipeSearchItemTitle extends StatelessWidget {
 
 class _RecipeSearchItemRating extends StatelessWidget {
   final String _rating;
+
   _RecipeSearchItemRating(this._rating);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,6 +73,9 @@ class _RecipeSearchItemRating extends StatelessWidget {
 }
 
 class RecipeViewer extends StatefulWidget {
+  const RecipeViewer({Key key, this.recipe}) : super(key: key);
+  final Recipe recipe;
+
   @override
   _RecipeViewerState createState() => _RecipeViewerState();
 }
