@@ -16,27 +16,34 @@ class RecipeGrid extends StatelessWidget {
   }
 }
 
-class _RecipeSearchItem extends StatelessWidget {
-  final Recipe _recipe;
+class _RecipeSearchItem extends StatefulWidget {
+  final Recipe recipe;
 
-  _RecipeSearchItem(this._recipe);
+  _RecipeSearchItem(this.recipe);
 
+  @override
+  _RecipeSearchItemState createState() {
+    return new _RecipeSearchItemState();
+  }
+}
+
+class _RecipeSearchItemState extends State<_RecipeSearchItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GridTile(
         child: Hero(
-          tag: _recipe.thumbnail,
+          tag: widget.recipe.thumbnail,
           child: (
-              Image.network(_recipe.thumbnail,
+              Image.network(widget.recipe.thumbnail,
                 fit: BoxFit.cover,
               ),
           ),
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black54,
-          title: _RecipeSearchItemTitle(_recipe.title),
-          subtitle: _RecipeSearchItemRating(_recipe.rating),
+          title: _RecipeSearchItemTitle(widget.recipe.title),
+          subtitle: _RecipeSearchItemRating(widget.recipe.rating),
         ),
 
       ),
