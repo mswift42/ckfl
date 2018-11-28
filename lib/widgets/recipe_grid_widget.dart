@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:ckfl/Recipe.dart' show Recipe;
 
 class RecipeGrid extends StatelessWidget {
-  final List<Recipe> _recipes;
+  final List<Recipe> recipes;
 
-  RecipeGrid(this._recipes);
+  RecipeGrid({Key key, this.recipes}): super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GridView.extent(
           maxCrossAxisExtent: 260.0,
-          children: _recipes.map((i) => _RecipeSearchItem(i)).toList()),
+          children: recipes.map((i) => _RecipeSearchItem(i)).toList()),
     );
   }
 }
