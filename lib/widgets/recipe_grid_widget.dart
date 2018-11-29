@@ -109,29 +109,45 @@ class _RecipeViewerState extends State<RecipeViewer> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        child: Column(
-      children: <Widget>[
-        Expanded(
+      child: Column(children: <Widget>[
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.width,
           child: Image.network(
             widget.recipe.thumbnail,
             fit: BoxFit.cover,
           ),
         ),
-        Row(
+        Expanded(
+            child: Column(
           children: <Widget>[
-            Text("Prep Time: "),
-            Text(widget.recipe.preptime),
+            recipeInfoRow(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
+                  Text("Difficulty: "),
+                  Text(widget.recipe.difficulty),
+                ],
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+            )
           ],
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        ),
-        Row(
-          children: <Widget>[
-            Text("Difficulty: "),
-            Text(widget.recipe.difficulty),
-          ],
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        )
-      ],
-    ));
+        )),
+      ]),
+    );
+  }
+
+  Padding recipeInfoRow() {
+    return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                Text("Prep Time: "),
+                Text(widget.recipe.preptime),
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
+          );
   }
 }
