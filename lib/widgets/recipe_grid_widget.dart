@@ -4,7 +4,7 @@ import 'package:ckfl/Recipe.dart' show Recipe;
 class RecipeGrid extends StatelessWidget {
   final List<Recipe> recipes;
 
-  RecipeGrid({Key key, this.recipes}): super(key: key);
+  RecipeGrid({Key key, this.recipes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +27,29 @@ class _RecipeSearchItem extends StatefulWidget {
   }
 }
 
+void _showRecipe() {
+
+}
+
 class _RecipeSearchItemState extends State<_RecipeSearchItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: GridTile(
-        child: Hero(
-          tag: widget.recipe.thumbnail,
-          child: Image.network(
-            widget.recipe.thumbnail,
-            fit: BoxFit.cover,
+      child: GestureDetector(
+        onTap: _showRecipe,
+        child: GridTile(
+          child: Hero(
+            tag: widget.recipe.thumbnail,
+            child: Image.network(
+              widget.recipe.thumbnail,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        footer: GridTileBar(
-          backgroundColor: Colors.black54,
-          title: _RecipeSearchItemTitle(widget.recipe.title),
-          subtitle: _RecipeSearchItemRating(widget.recipe.rating),
+          footer: GridTileBar(
+            backgroundColor: Colors.black54,
+            title: _RecipeSearchItemTitle(widget.recipe.title),
+            subtitle: _RecipeSearchItemRating(widget.recipe.rating),
+          ),
         ),
       ),
     );
