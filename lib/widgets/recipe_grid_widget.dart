@@ -108,6 +108,30 @@ class RecipeViewer extends StatefulWidget {
 class _RecipeViewerState extends State<RecipeViewer> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Image.asset(widget.recipe.thumbnail));
+    return Card(
+        child: Column(
+      children: <Widget>[
+        Expanded(
+          child: Image.network(
+            widget.recipe.thumbnail,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Row(
+          children: <Widget>[
+            Text("Prep Time: "),
+            Text(widget.recipe.preptime),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        ),
+        Row(
+          children: <Widget>[
+            Text("Difficulty: "),
+            Text(widget.recipe.difficulty),
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        )
+      ],
+    ));
   }
 }
