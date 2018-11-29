@@ -113,10 +113,12 @@ class _RecipeViewerState extends State<RecipeViewer> {
         SizedBox(
           height: MediaQuery.of(context).size.height / 2,
           width: MediaQuery.of(context).size.width,
+          child: GestureDetector(child:
           child: Image.network(
             widget.recipe.thumbnail,
             fit: BoxFit.cover,
           ),
+    ),
         ),
         Expanded(
             child: Column(
