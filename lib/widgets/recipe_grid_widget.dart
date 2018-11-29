@@ -121,30 +121,21 @@ class _RecipeViewerState extends State<RecipeViewer> {
         Expanded(
             child: Column(
           children: <Widget>[
-            recipeInfoRow(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: <Widget>[
-                  Text("Difficulty: "),
-                  Text(widget.recipe.difficulty),
-                ],
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              ),
-            )
+            recipeInfoRow("Preptime: ", widget.recipe.preptime),
+            recipeInfoRow("Difficulty", widget.recipe.difficulty),
           ],
         )),
       ]),
     );
   }
 
-  Padding recipeInfoRow() {
+  Padding recipeInfoRow(String description, String detail) {
     return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: <Widget>[
-                Text("Prep Time: "),
-                Text(widget.recipe.preptime),
+                Text(description),
+                Text(detail),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
             ),
