@@ -11,7 +11,7 @@ class RecipeGrid extends StatelessWidget {
     return Container(
       child: GridView.extent(
           maxCrossAxisExtent: 260.0,
-          children: recipes.map((i) => _RecipeSearchItem(i)).toList()),
+          children: recipes.map((i) => _RecipeSearchItem(recipe: i)).toList()),
     );
   }
 }
@@ -19,7 +19,7 @@ class RecipeGrid extends StatelessWidget {
 class _RecipeSearchItem extends StatefulWidget {
   final Recipe recipe;
 
-  _RecipeSearchItem(this.recipe);
+  _RecipeSearchItem({Key key, this.recipe}) : super(key: key);
 
   @override
   _RecipeSearchItemState createState() {
@@ -27,16 +27,29 @@ class _RecipeSearchItem extends StatefulWidget {
   }
 }
 
-void _showRecipe() {
-
-}
-
 class _RecipeSearchItemState extends State<_RecipeSearchItem> {
+  void _showRecipe(BuildContext context) {
+    Navigator.push(context,
+        MaterialPageRoute<void>(builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.recipe.title),
+        ),
+        body: SizedBox.expand(
+          child: Hero(
+            tag: widget.recipe.thumbnail,
+            child: RecipeViewer(recipe: widget.recipe),
+          ),
+        ),
+      );
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: GestureDetector(
-        onTap: _showRecipe,
+        onTap: () => _showRecipe(context),
         child: GridTile(
           child: Hero(
             tag: widget.recipe.thumbnail,
