@@ -108,6 +108,6 @@ class RecipeViewer extends StatefulWidget {
 class _RecipeViewerState extends State<RecipeViewer> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(child: Image.asset(widget.recipe.thumbnail));
   }
 }
