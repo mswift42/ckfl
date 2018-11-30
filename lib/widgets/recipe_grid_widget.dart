@@ -106,37 +106,32 @@ class RecipeViewer extends StatefulWidget {
 }
 
 class _RecipeViewerState extends State<RecipeViewer> {
-  void _showRecipeDetail(String url) {
+  void _showRecipeDetail(String url) {}
 
-  }
   @override
-
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(0),
-      child: Column(children: <Widget>[
-        SizedBox(
-          height: MediaQuery.of(context).size.height / 2,
-          width: MediaQuery.of(context).size.width,
-          child: GestureDetector(
-            onTap: () => _showRecipeDetail(widget.recipe.url),
-            child: Image.network(
-              widget.recipe.thumbnail,
-              fit: BoxFit.cover,
-            ),
+    return Column(children: <Widget>[
+      SizedBox(
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.width,
+        child: GestureDetector(
+          onTap: () => _showRecipeDetail(widget.recipe.url),
+          child: Image.network(
+            widget.recipe.thumbnail,
+            fit: BoxFit.cover,
           ),
         ),
-        Expanded(
-            child: Column(
-          children: <Widget>[
-            Divider(),
-            recipeInfoRow("Rating", widget.recipe.rating),
-            recipeInfoRow("Preptime: ", widget.recipe.preptime),
-            recipeInfoRow("Difficulty", widget.recipe.difficulty),
-          ],
-        )),
-      ]),
-    );
+      ),
+      Expanded(
+          child: Column(
+        children: <Widget>[
+          Divider(),
+          recipeInfoRow("Rating", widget.recipe.rating),
+          recipeInfoRow("Preptime: ", widget.recipe.preptime),
+          recipeInfoRow("Difficulty", widget.recipe.difficulty),
+        ],
+      )),
+    ]);
   }
 
   Padding recipeInfoRow(String description, String detail) {
