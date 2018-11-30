@@ -106,23 +106,31 @@ class RecipeViewer extends StatefulWidget {
 }
 
 class _RecipeViewerState extends State<RecipeViewer> {
+  void _showRecipeDetail(String url) {
+
+  }
   @override
+
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.all(0),
       child: Column(children: <Widget>[
         SizedBox(
           height: MediaQuery.of(context).size.height / 2,
           width: MediaQuery.of(context).size.width,
-          child: GestureDetector(child:
-          child: Image.network(
-            widget.recipe.thumbnail,
-            fit: BoxFit.cover,
+          child: GestureDetector(
+            onTap: () => _showRecipeDetail(widget.recipe.url),
+            child: Image.network(
+              widget.recipe.thumbnail,
+              fit: BoxFit.cover,
+            ),
           ),
-    ),
         ),
         Expanded(
             child: Column(
           children: <Widget>[
+            Divider(),
+            recipeInfoRow("Rating", widget.recipe.rating),
             recipeInfoRow("Preptime: ", widget.recipe.preptime),
             recipeInfoRow("Difficulty", widget.recipe.difficulty),
           ],
@@ -133,14 +141,14 @@ class _RecipeViewerState extends State<RecipeViewer> {
 
   Padding recipeInfoRow(String description, String detail) {
     return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: <Widget>[
-                Text(description),
-                Text(detail),
-              ],
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            ),
-          );
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Text(description),
+          Text(detail),
+        ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      ),
+    );
   }
 }
