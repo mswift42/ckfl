@@ -122,21 +122,23 @@ class _RecipeViewerState extends State<RecipeViewer> {
           ),
         ),
       ),
-      Expanded(
-          child: Column(
-        children: <Widget>[
-          Divider(),
-          recipeInfoRow("Rating", widget.recipe.rating),
-          recipeInfoRow("Preptime: ", widget.recipe.preptime),
-          recipeInfoRow("Difficulty", widget.recipe.difficulty),
-        ],
-      )),
+      ClipRect(
+        child: IntrinsicHeight(
+            child: Column(
+          children: <Widget>[
+            Divider(),
+            recipeInfoRow("Rating", widget.recipe.rating),
+            recipeInfoRow("Preptime: ", widget.recipe.preptime),
+            recipeInfoRow("Difficulty", widget.recipe.difficulty),
+          ],
+        )),
+      ),
     ]);
   }
 
   Padding recipeInfoRow(String description, String detail) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
       child: Row(
         children: <Widget>[
           Text(description),
