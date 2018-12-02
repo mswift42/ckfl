@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ckfl/Recipe.dart' show Recipe;
+import 'package:cached_network_image/cached_network_image.dart';
 
 class RecipeGrid extends StatelessWidget {
   final List<Recipe> recipes;
@@ -53,8 +54,8 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
         child: GridTile(
           child: Hero(
             tag: widget.recipe.thumbnail,
-            child: Image.network(
-              widget.recipe.thumbnail,
+            child: CachedNetworkImage(
+              imageUrl: widget.recipe.thumbnail,
               fit: BoxFit.cover,
             ),
           ),
@@ -116,8 +117,8 @@ class _RecipeViewerState extends State<RecipeViewer> {
         width: MediaQuery.of(context).size.width,
         child: GestureDetector(
           onTap: () => _showRecipeDetail(widget.recipe.url),
-          child: Image.network(
-            widget.recipe.thumbnail,
+          child: CachedNetworkImage(
+            imageUrl: widget.recipe.thumbnail,
             fit: BoxFit.cover,
           ),
         ),
