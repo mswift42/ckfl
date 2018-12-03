@@ -36,7 +36,7 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
         appBar: AppBar(
           title: Text(widget.recipe.title),
         ),
-        body: SizedBox.expand(
+        body: SizedBox.shrink(
           child: Hero(
             tag: widget.recipe.thumbnail,
             child: RecipeViewer(recipe: widget.recipe),
@@ -107,7 +107,10 @@ class RecipeViewer extends StatefulWidget {
 }
 
 class _RecipeViewerState extends State<RecipeViewer> {
-  void _showRecipeDetail(String url) {}
+  void _showRecipeDetail(BuildContext context, String url) {
+    Navigator.push(context,
+    MaterialPageRoute(builder: BuildContext context))
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,16 +126,16 @@ class _RecipeViewerState extends State<RecipeViewer> {
           ),
         ),
       ),
-      ClipRect(
-        child: IntrinsicHeight(
-            child: Column(
+      Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Divider(),
+            
             recipeInfoRow("Rating", widget.recipe.rating),
             recipeInfoRow("Preptime: ", widget.recipe.preptime),
             recipeInfoRow("Difficulty", widget.recipe.difficulty),
           ],
-        )),
+        ),
       ),
     ]);
   }
