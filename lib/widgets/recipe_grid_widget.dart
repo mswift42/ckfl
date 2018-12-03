@@ -108,8 +108,20 @@ class RecipeViewer extends StatefulWidget {
 
 class _RecipeViewerState extends State<RecipeViewer> {
   void _showRecipeDetail(BuildContext context, String url) {
-    Navigator.push(context,
-    MaterialPageRoute(builder: BuildContext context))
+    Navigator.push(
+      context,
+      MaterialPageRoute<void>(builder: (BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+              title: Text(widget.recipe.title),
+            ),
+            body: Center(
+                child: Expanded(
+                    child: Column(
+              children: [],
+            ))));
+      }),
+    );
   }
 
   @override
@@ -130,7 +142,6 @@ class _RecipeViewerState extends State<RecipeViewer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            
             recipeInfoRow("Rating", widget.recipe.rating),
             recipeInfoRow("Preptime: ", widget.recipe.preptime),
             recipeInfoRow("Difficulty", widget.recipe.difficulty),
