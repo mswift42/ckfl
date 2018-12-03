@@ -131,7 +131,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
         height: MediaQuery.of(context).size.height / 2,
         width: MediaQuery.of(context).size.width,
         child: GestureDetector(
-          onTap: () => _showRecipeDetail(widget.recipe.url),
+          onTap: () => _showRecipeDetail(context, widget.recipe.url),
           child: CachedNetworkImage(
             imageUrl: widget.recipe.thumbnail,
             fit: BoxFit.cover,
