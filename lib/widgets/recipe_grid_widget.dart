@@ -29,14 +29,16 @@ class _RecipeSearchItem extends StatefulWidget {
 }
 
 class _RecipeSearchItemState extends State<_RecipeSearchItem> {
+
   void _showRecipe(BuildContext context) {
     Navigator.push(context,
         MaterialPageRoute<void>(builder: (BuildContext context) {
+          AppBar appBar = AppBar(title: Text(widget.recipe.title));
       return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.recipe.title),
-        ),
-        body: SizedBox.shrink(
+        appBar: appBar,
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height - appBar.preferredSize.height,
           child: Hero(
             tag: widget.recipe.thumbnail,
             child: RecipeViewer(recipe: widget.recipe),
@@ -45,6 +47,7 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
       );
     }));
   }
+
 
   @override
   Widget build(BuildContext context) {
