@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ckfl/Recipe.dart' show Recipe;
+import 'package:ckfl/Recipe.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ckfl/mockrecipedetail.dart';
 
 class RecipeGrid extends StatelessWidget {
   final List<Recipe> recipes;
@@ -117,11 +118,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
             appBar: AppBar(
               title: Text(widget.recipe.title),
             ),
-            body: Center(
-                child: Expanded(
-                    child: Column(
-              children: [],
-            ))));
+            body: RecipeDetailView(schupfnudel));
       }),
     );
   }
@@ -166,3 +163,18 @@ class _RecipeViewerState extends State<RecipeViewer> {
     );
   }
 }
+
+class RecipeDetailView extends StatefulWidget {
+  final RecipeDetail recipeDetail;
+  RecipeDetailView({Key key,this.recipeDetail}) : super(key: key);
+  @override
+  _RecipeDetailViewState createState() => _RecipeDetailViewState();
+}
+
+class _RecipeDetailViewState extends State<RecipeDetailView> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(child: Text(widget.recipeDetail.title));
+  }
+}
+
