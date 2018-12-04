@@ -166,7 +166,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
 
 class RecipeDetailView extends StatefulWidget {
   final RecipeDetail recipeDetail;
-  RecipeDetailView({Key key,this.recipeDetail}) : super(key: key);
+  RecipeDetailView({Key key, this.recipeDetail}) : super(key: key);
   @override
   _RecipeDetailViewState createState() => _RecipeDetailViewState();
 }
@@ -177,4 +177,3 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
     return Container(child: Text(widget.recipeDetail.title));
   }
 }
-
