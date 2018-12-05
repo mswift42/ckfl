@@ -166,7 +166,9 @@ class _RecipeViewerState extends State<RecipeViewer> {
 
 class RecipeDetailView extends StatefulWidget {
   final RecipeDetail recipeDetail;
+
   RecipeDetailView({Key key, this.recipeDetail}) : super(key: key);
+
   @override
   _RecipeDetailViewState createState() => _RecipeDetailViewState();
 }
@@ -174,6 +176,19 @@ class RecipeDetailView extends StatefulWidget {
 class _RecipeDetailViewState extends State<RecipeDetailView> {
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text(widget.recipeDetail.title));
+    return SizedBox.expand(
+      child: Column(
+        children: <Widget>[
+          CachedNetworkImage(
+            imageUrl: widget.recipeDetail.thumbnail,
+          ),
+          Expanded(
+            child: Column(
+              children: <Widget>[],
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
