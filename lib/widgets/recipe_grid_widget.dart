@@ -118,7 +118,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
             appBar: AppBar(
               title: Text(widget.recipe.title),
             ),
-            body: RecipeDetailView(schupfnudel));
+            body: RecipeDetailView(recipeDetail: schupfnudel));
       }),
     );
   }
