@@ -184,11 +184,36 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
           ),
           Expanded(
             child: Column(
-              children: <Widget>[],
+              children: <Widget>[
+                _RecipeIngredientsView(widget.recipeDetail.ingredients),
+              ],
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class _RecipeIngredientsView extends StatelessWidget {
+  final List<RecipeIngredient> _ingredients;
+
+  _RecipeIngredientsView(this._ingredients);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Column(
+      children: _ingredients.map((i) => _ingredientView(i)).toList(),
+    ));
+  }
+
+  Widget _ingredientView(RecipeIngredient ingredient) {
+    return Row(
+      children: <Widget>[
+        Text(ingredient.amount + " "),
+        Text(ingredient.ingredient),
+      ],
     );
   }
 }
