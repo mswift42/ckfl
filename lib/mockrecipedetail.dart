@@ -21,7 +21,17 @@ var schupfnudel = RecipeDetail(
   cookingtime: "",
   thumbnail:
       "https://static.chefkoch-cdn.de/ck.de/rezepte/117/117138/1156413-420x280-fix-schupfnudel-bohnen-pfanne.jpg",
-  ingredients: [RecipeIngredient("500\u00a0g", "Schupfnudeln (Kühlregal)")],
+  ingredients: [
+    RecipeIngredient("500\u00a0g", "Schupfnudeln (Kühlregal)"),
+    RecipeIngredient("200\u00a0g", "Schinken, gekochter"),
+    RecipeIngredient("250\u00a0g", "Bohnen (Prinzessbohnen, TK)"),
+    RecipeIngredient("1/8\u00a0Liter", "Fleischbrühe"),
+    RecipeIngredient("1\u00a0Becher", "Crème fraîche"),
+    RecipeIngredient(
+        "4\u00a0Scheibe/n", "Käse (Toast-Käse, z.B. Scheibletten)"),
+    RecipeIngredient("\u00a0n. B.", "Salz und Pfeffer"),
+    RecipeIngredient("\u00a0", "Olivenöl"),
+  ],
   method:
       "Die Prinzessböhnchen für ca. 5 Min. in kochendem Wasser garen. \n\nDen Kochschinken würfeln und mit etwas Olivenöl in der Pfanne anbraten. Die Schupfnudeln hinzugeben und 5-8 Min. zusammen mit dem Schinken braten, bis die Schupfnudeln eine goldgelbe Farbe annehmen. Die Prinzessbohnen hinzu geben. Nun 1/8 l Fleischbrühe zugießen und mit Crème fraiche nach Belieben andicken. Nach Geschmack würzen. Als Abschluss die Käsescheiben oben auflegen, bis diese verlaufen. Sofort servieren.",
 );
