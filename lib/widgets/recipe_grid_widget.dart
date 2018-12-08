@@ -209,11 +209,14 @@ class _RecipeIngredientsView extends StatelessWidget {
   }
 
   Widget _ingredientView(RecipeIngredient ingredient) {
-    return Row(
-      children: <Widget>[
-        Text(ingredient.amount + " "),
-        Text(ingredient.ingredient),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Text(ingredient.amount + " "),
+          Text(ingredient.ingredient),
+        ],
+      ),
     );
   }
 }
