@@ -195,12 +195,9 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
   }
 }
 
-class _RecipeDetailTabView extends StatefulWidget {
-  @override
-  __RecipeDetailTabViewState createState() => __RecipeDetailTabViewState();
-}
-
-class __RecipeDetailTabViewState extends State<_RecipeDetailTabView> {
+class _RecipeDetailTabView extends StatelessWidget {
+  final RecipeDetail _recipeDetail;
+  _RecipeDetailTabView(this._recipeDetail);
   @override
   Widget build(BuildContext context) {
     return Container();
