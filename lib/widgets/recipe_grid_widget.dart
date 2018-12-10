@@ -33,26 +33,20 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
   void _showRecipe(BuildContext context) {
     Navigator.push(context,
         MaterialPageRoute<void>(builder: (BuildContext context) {
-          AppBar appBar = AppBar(title: Text(widget.recipe.title));
-          return Scaffold(
-            appBar: appBar,
-            body: SizedBox(
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-              height:
-              MediaQuery
-                  .of(context)
-                  .size
-                  .height - appBar.preferredSize.height,
-              child: Hero(
-                tag: widget.recipe.thumbnail,
-                child: RecipeViewer(recipe: widget.recipe),
-              ),
-            ),
-          );
-        }));
+      AppBar appBar = AppBar(title: Text(widget.recipe.title));
+      return Scaffold(
+        appBar: appBar,
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height:
+              MediaQuery.of(context).size.height - appBar.preferredSize.height,
+          child: Hero(
+            tag: widget.recipe.thumbnail,
+            child: RecipeViewer(recipe: widget.recipe),
+          ),
+        ),
+      );
+    }));
   }
 
   @override
@@ -133,14 +127,8 @@ class _RecipeViewerState extends State<RecipeViewer> {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       SizedBox(
-        height: MediaQuery
-            .of(context)
-            .size
-            .height / 2,
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.width,
         child: GestureDetector(
           onTap: () => _showRecipeDetail(context, widget.recipe.url),
           child: CachedNetworkImage(
@@ -197,7 +185,7 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
           Expanded(
             child: Column(
               children: <Widget>[
-                _RecipeIngredientsView(widget.recipeDetail.ingredients),
+                _RecipeDetailTabView(widget.recipeDetail),
               ],
             ),
           )
@@ -222,7 +210,6 @@ class _RecipeDetailTabView extends StatelessWidget {
             Tab(icon: Icon(Icons.list)),
             Tab(icon: Icon(Icons.description)),
             Tab(icon: Icon(Icons.info_outline)),
-
           ]),
           TabBarView(
             children: <Widget>[
@@ -233,8 +220,7 @@ class _RecipeDetailTabView extends StatelessWidget {
           )
         ],
       ),
-
-    )
+    );
   }
 }
 
@@ -247,8 +233,8 @@ class _RecipeIngredientsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: ListView(
-          children: _ingredients.map((i) => _ingredientView(i)).toList(),
-        ));
+      children: _ingredients.map((i) => _ingredientView(i)).toList(),
+    ));
   }
 
   Widget _ingredientView(RecipeIngredient ingredient) {
