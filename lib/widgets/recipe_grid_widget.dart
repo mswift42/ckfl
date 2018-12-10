@@ -176,7 +176,9 @@ class RecipeDetailView extends StatefulWidget {
 class _RecipeDetailViewState extends State<RecipeDetailView> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 2,
+      width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
           CachedNetworkImage(
