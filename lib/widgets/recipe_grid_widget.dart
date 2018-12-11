@@ -172,22 +172,29 @@ class RecipeDetailView extends StatefulWidget {
 class _RecipeDetailViewState extends State<RecipeDetailView> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: <Widget>[
-          CachedNetworkImage(
-            imageUrl: widget.recipeDetail.thumbnail,
-          ),
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                _RecipeDetailTabView(widget.recipeDetail),
-              ],
+    return Scaffold(
+      appBar: AppBar(
+          title: Text(widget.recipeDetail.title),
+          bottom: TabBar(tabs: [
+            Tab(icon: Icon(Icons.list)),
+            Tab(icon: Icon(Icons.description)),
+            Tab(icon: Icon(Icons.info_outline)),
+          ])),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height / 2,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: <Widget>[
+            CachedNetworkImage(
+              imageUrl: widget.recipeDetail.thumbnail,
             ),
-          )
-        ],
+            Expanded(
+              child: Column(
+                children: <Widget>[],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
