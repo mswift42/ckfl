@@ -114,11 +114,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
     Navigator.push(
       context,
       MaterialPageRoute<void>(builder: (BuildContext context) {
-        return Scaffold(
-            appBar: AppBar(
-              title: Text(widget.recipe.title),
-            ),
-            body: RecipeDetailView(recipeDetail: schupfnudel));
+        return RecipeDetailView(recipeDetail: schupfnudel);
       }),
     );
   }
@@ -208,7 +204,7 @@ class _RecipeDetailTabView extends StatelessWidget {
       length: 3,
       child: Column(
         children: <Widget>[
-          TabBar(tabs: [
+          TabBar(labelColor: Colors.black, tabs: [
             Tab(icon: Icon(Icons.list)),
             Tab(icon: Icon(Icons.description)),
             Tab(icon: Icon(Icons.info_outline)),
