@@ -175,17 +175,27 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(widget.recipeDetail.title),
-        ),
-        body: _tabBody(context),
-      ),
+          appBar: AppBar(
+            title: Text(widget.recipeDetail.title),
+            bottom: TabBar(tabs: [
+              Tab(icon: Icon(Icons.info)),
+              Tab(icon: Icon(Icons.list)),
+              Tab(icon: Icon(Icons.description)),
+            ]),
+          ),
+          body: TabBarView(children: <Widget>[
+            _tabBody(context),
+            _tabBody(context),
+            _tabBody(context),
+          ])
+          //_tabBody(context),
+          ),
     );
   }
 
   SizedBox _tabBody(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 2,
+      height: MediaQuery.of(context).size.height / 3,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
