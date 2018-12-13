@@ -210,7 +210,6 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
   }
 }
 
-
 class _RecipeIngredientsView extends StatelessWidget {
   final List<RecipeIngredient> _ingredients;
 
