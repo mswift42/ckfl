@@ -184,8 +184,9 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
             ]),
           ),
           body: TabBarView(children: <Widget>[
-            _tabBody(context),
-            _tabBody(context),
+            _tabBody(context,
+                _RecipeIngredientsView(widget.recipeDetail.ingredients)),
+            _tabBody(context, _RecipeMethodView(widget.recipeDetail.method)),
             _tabBody(context),
           ])
           //_tabBody(context),
@@ -193,7 +194,7 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
     );
   }
 
-  SizedBox _tabBody(BuildContext context) {
+  SizedBox _tabBody(BuildContext context, Widget bottomview) {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 3,
       width: MediaQuery.of(context).size.width,
@@ -202,11 +203,7 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
           CachedNetworkImage(
             imageUrl: widget.recipeDetail.thumbnail,
           ),
-          Expanded(
-            child: Column(
-              children: <Widget>[],
-            ),
-          )
+          Expanded(child: bottomview)
         ],
       ),
     );
@@ -265,5 +262,16 @@ class _RecipeIngredientsView extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _RecipeMethodView extends StatelessWidget {
+  final String _method;
+
+  _RecipeMethodView(this._method);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(_method);
   }
 }
