@@ -137,27 +137,27 @@ class _RecipeViewerState extends State<RecipeViewer> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            recipeInfoRow("Rating", widget.recipe.rating),
-            recipeInfoRow("Preptime: ", widget.recipe.preptime),
-            recipeInfoRow("Difficulty", widget.recipe.difficulty),
+            _recipeInfoRow("Rating", widget.recipe.rating),
+            _recipeInfoRow("Preptime: ", widget.recipe.preptime),
+            _recipeInfoRow("Difficulty", widget.recipe.difficulty),
           ],
         ),
       ),
     ]);
   }
+}
 
-  Padding recipeInfoRow(String description, String detail) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
-      child: Row(
-        children: <Widget>[
-          Text(description),
-          Text(detail),
-        ],
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      ),
-    );
-  }
+Padding _recipeInfoRow(String description, String detail) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+    child: Row(
+      children: <Widget>[
+        Text(description),
+        Text(detail),
+      ],
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    ),
+  );
 }
 
 class RecipeDetailView extends StatefulWidget {
@@ -187,7 +187,7 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
             _tabBody(context,
                 _RecipeIngredientsView(widget.recipeDetail.ingredients)),
             _tabBody(context, _RecipeMethodView(widget.recipeDetail.method)),
-            _tabBody(context),
+            _tabBody(context, _RecipeInfoView(widget.recipeDetail)),
           ])
           //_tabBody(context),
           ),
@@ -210,34 +210,6 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
   }
 }
 
-class _RecipeDetailTabView extends StatelessWidget {
-  final RecipeDetail _recipeDetail;
-
-  _RecipeDetailTabView(this._recipeDetail);
-
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Column(
-        children: <Widget>[
-          TabBar(labelColor: Colors.black, tabs: [
-            Tab(icon: Icon(Icons.list)),
-            Tab(icon: Icon(Icons.description)),
-            Tab(icon: Icon(Icons.info_outline)),
-          ]),
-          TabBarView(
-            children: <Widget>[
-              _RecipeIngredientsView(_recipeDetail.ingredients),
-              Text(_recipeDetail.method),
-              Text(_recipeDetail.rating),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
 
 class _RecipeIngredientsView extends StatelessWidget {
   final List<RecipeIngredient> _ingredients;
@@ -273,5 +245,26 @@ class _RecipeMethodView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(_method);
+  }
+}
+
+class _RecipeInfoView extends StatelessWidget {
+  final RecipeDetail _recipeDetail;
+
+  _RecipeInfoView(this._recipeDetail);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        _recipeInfoRow("Rating", _recipeDetail.rating),
+        _recipeInfoRow("Preptime", _recipeDetail.preptime),
+        _recipeInfoRow(
+            "Cooking Time",
+            _recipeDetail.cookingtime == ""
+                ? "N.A."
+                : _recipeDetail.cookingtime),
+      ],
+    );
   }
 }
