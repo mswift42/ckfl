@@ -242,7 +242,15 @@ class _RecipeMethodView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(_method);
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          _method,
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+      ),
+    );
   }
 }
 
