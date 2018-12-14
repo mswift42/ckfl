@@ -217,10 +217,9 @@ class _RecipeIngredientsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: ListView(
+    return ListView(
       children: _ingredients.map((i) => _ingredientView(i)).toList(),
-    ));
+    );
   }
 
   Widget _ingredientView(RecipeIngredient ingredient) {
