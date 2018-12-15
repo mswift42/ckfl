@@ -196,11 +196,12 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
 
   SizedBox _tabBody(BuildContext context, Widget bottomview) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height / 3,
+      height: MediaQuery.of(context).size.height / 5,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: <Widget>[
           CachedNetworkImage(
+            fit: BoxFit.contain,
             imageUrl: widget.recipeDetail.thumbnail,
           ),
           Expanded(child: bottomview)
@@ -263,6 +264,7 @@ class _RecipeInfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        _recipeInfoRow("Difficulty", _recipeDetail.difficulty),
         _recipeInfoRow("Rating", _recipeDetail.rating),
         _recipeInfoRow("Preptime", _recipeDetail.preptime),
         _recipeInfoRow(
