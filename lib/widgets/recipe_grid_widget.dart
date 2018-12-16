@@ -184,10 +184,9 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
             ]),
           ),
           body: TabBarView(children: <Widget>[
-            _tabBody(context,
-                _RecipeIngredientsView(widget.recipeDetail.ingredients)),
-            _tabBody(context, _RecipeMethodView(widget.recipeDetail.method)),
-            _tabBody(context, _RecipeInfoView(widget.recipeDetail)),
+            _RecipeIngredientsView(widget.recipeDetail),
+            _RecipeMethodView(widget.recipeDetail.method),
+            _RecipeInfoView(widget.recipeDetail),
           ])
           //_tabBody(context),
           ),
@@ -212,14 +211,14 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
 }
 
 class _RecipeIngredientsView extends StatelessWidget {
-  final List<RecipeIngredient> _ingredients;
+  final RecipeDetail _recipeDetail;
 
-  _RecipeIngredientsView(this._ingredients);
+  _RecipeIngredientsView(this._recipeDetail);
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: _ingredients.map((i) => _ingredientView(i)).toList(),
+      children: _recipeDetail.ingredients.map((i) => _ingredientView(i)).toList(),
     );
   }
 
