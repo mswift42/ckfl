@@ -185,29 +185,27 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
           ),
           body: TabBarView(children: <Widget>[
             _RecipeIngredientsView(widget.recipeDetail),
-            _RecipeMethodView(widget.recipeDetail.method),
+            _RecipeMethodView(widget.recipeDetail),
             _RecipeInfoView(widget.recipeDetail),
           ])
           //_tabBody(context),
           ),
     );
   }
+}
 
-  SizedBox _tabBody(BuildContext context, Widget bottomview) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 5,
+Widget _smallDetailThumbnail(BuildContext context, String thumbnail) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(
+      vertical: 10.0,
+      horizontal: 0.5,
+    ),
+    child: SizedBox(
+      height: MediaQuery.of(context).size.height / 4,
       width: MediaQuery.of(context).size.width,
-      child: Column(
-        children: <Widget>[
-          CachedNetworkImage(
-            fit: BoxFit.contain,
-            imageUrl: widget.recipeDetail.thumbnail,
-          ),
-          Expanded(child: bottomview)
-        ],
-      ),
-    );
-  }
+      child: CachedNetworkImage(fit: BoxFit.fitWidth, imageUrl: thumbnail),
+    ),
+  );
 }
 
 class _RecipeIngredientsView extends StatelessWidget {
@@ -219,7 +217,7 @@ class _RecipeIngredientsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        _smallDetailThumbnail(context),
+        _smallDetailThumbnail(context, _recipeDetail.thumbnail),
         Expanded(
           child: ListView(
             children: _recipeDetail.ingredients
@@ -228,21 +226,6 @@ class _RecipeIngredientsView extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _smallDetailThumbnail(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 10.0,
-        horizontal: 0.5,
-      ),
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height / 4,
-        width: MediaQuery.of(context).size.width,
-        child: CachedNetworkImage(
-            fit: BoxFit.fitWidth, imageUrl: _recipeDetail.thumbnail),
-      ),
     );
   }
 
@@ -260,20 +243,25 @@ class _RecipeIngredientsView extends StatelessWidget {
 }
 
 class _RecipeMethodView extends StatelessWidget {
-  final String _method;
+  final RecipeDetail _recipeDetail;
 
-  _RecipeMethodView(this._method);
+  _RecipeMethodView(this._recipeDetail);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          _method,
-          style: TextStyle(fontWeight: FontWeight.w500),
+    return Column(
+      children: <Widget>[
+        _smallDetailThumbnail(context, _recipeDetail.thumbnail),
+        SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              _recipeDetail.method,
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
