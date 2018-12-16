@@ -217,8 +217,32 @@ class _RecipeIngredientsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: _recipeDetail.ingredients.map((i) => _ingredientView(i)).toList(),
+    return Column(
+      children: <Widget>[
+        _smallDetailThumbnail(context),
+        Expanded(
+          child: ListView(
+            children: _recipeDetail.ingredients
+                .map((i) => _ingredientView(i))
+                .toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _smallDetailThumbnail(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 0.5,
+      ),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 4,
+        width: MediaQuery.of(context).size.width,
+        child: CachedNetworkImage(
+            fit: BoxFit.fitWidth, imageUrl: _recipeDetail.thumbnail),
+      ),
     );
   }
 
