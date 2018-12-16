@@ -196,10 +196,7 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
 
 Widget _smallDetailThumbnail(BuildContext context, String thumbnail) {
   return Padding(
-    padding: const EdgeInsets.symmetric(
-      vertical: 10.0,
-      horizontal: 0.5,
-    ),
+    padding: const EdgeInsets.fromLTRB(0.5, 0, 0.5, 10.0),
     child: SizedBox(
       height: MediaQuery.of(context).size.height / 4,
       width: MediaQuery.of(context).size.width,
@@ -275,6 +272,15 @@ class _RecipeInfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0.5, 0, 0.5, 10.0),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 3,
+            child: CachedNetworkImage(
+                fit: BoxFit.fitWidth, imageUrl: _recipeDetail.thumbnail),
+          ),
+        ),
         _recipeInfoRow("Difficulty", _recipeDetail.difficulty),
         _recipeInfoRow("Rating", _recipeDetail.rating),
         _recipeInfoRow("Preptime", _recipeDetail.preptime),
