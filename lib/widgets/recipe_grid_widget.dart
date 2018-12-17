@@ -129,7 +129,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
           onTap: () => _showRecipeDetail(context, widget.recipe.url),
           child: CachedNetworkImage(
             imageUrl: widget.recipe.thumbnail,
-            fit: BoxFit.cover,
+            fit: BoxFit.fitWidth,
           ),
         ),
       ),
