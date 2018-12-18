@@ -20,6 +20,13 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
   }
 
   @override
+  void dispose() {
+    controller.removeListener(_setSearchQueryText);
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container();
   }
