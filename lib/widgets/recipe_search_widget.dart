@@ -26,8 +26,19 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
     super.dispose();
   }
 
+  void _searchRecipe(String inp) {
+    print(inp);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: <Widget>[
+        TextField(
+          controller: controller,
+          onSubmitted: _searchRecipe,
+        )
+      ],
+    );
   }
 }
