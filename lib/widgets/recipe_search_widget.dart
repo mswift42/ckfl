@@ -34,9 +34,12 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        TextField(
-          controller: controller,
-          onSubmitted: _searchRecipe,
+        Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: TextField(
+            controller: controller,
+            onSubmitted: _searchRecipe,
+          ),
         )
       ],
     );
