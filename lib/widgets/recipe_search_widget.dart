@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ckfl/widgets/recipe_grid_widget.dart';
 
 class RecipeSearchView extends StatefulWidget {
   @override
@@ -28,6 +29,7 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
 
   void _searchRecipe(String inp) {
     print(inp);
+    Navigator.pushNamed(context, '/recipegrid');
   }
 
   @override
