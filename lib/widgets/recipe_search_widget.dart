@@ -32,16 +32,21 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: TextField(
-            controller: controller,
-            onSubmitted: _searchRecipe,
-          ),
-        )
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("CK"),
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: TextField(
+              controller: controller,
+              onSubmitted: _searchRecipe,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
