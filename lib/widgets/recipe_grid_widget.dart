@@ -111,7 +111,7 @@ class RecipeViewer extends StatefulWidget {
 
 class _RecipeViewerState extends State<RecipeViewer> {
   void _showRecipeDetail(BuildContext context, String url) {
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute<void>(builder: (BuildContext context) {
         return RecipeDetailView(recipeDetail: schupfnudel);
