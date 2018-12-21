@@ -121,29 +121,36 @@ class _RecipeViewerState extends State<RecipeViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      SizedBox(
-        height: MediaQuery.of(context).size.height / 3,
-        width: MediaQuery.of(context).size.width,
-        child: GestureDetector(
-          onTap: () => _showRecipeDetail(context, widget.recipe.url),
-          child: CachedNetworkImage(
-            imageUrl: widget.recipe.thumbnail,
-            fit: BoxFit.fitWidth,
+    final Size _size = MediaQuery.of(context).size;
+    const double _kRecipeViewMaxWidth = 460.0;
+    final bool fullWidth = _size.width < _kRecipeViewMaxWidth;
+    return Container(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: _size.height / 3,
+            width: _size.width,
+            child: GestureDetector(
+              onTap: () => _showRecipeDetail(context, widget.recipe.url),
+              child: CachedNetworkImage(
+                imageUrl: widget.recipe.thumbnail,
+                fit: BoxFit.fitWidth,
+              ),
+            ),
           ),
-        ),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                _recipeInfoRow("Rating", widget.recipe.rating),
+                _recipeInfoRow("Preptime: ", widget.recipe.preptime),
+                _recipeInfoRow("Difficulty", widget.recipe.difficulty),
+              ],
+            ),
+          ),
+        ],
       ),
-      Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _recipeInfoRow("Rating", widget.recipe.rating),
-            _recipeInfoRow("Preptime: ", widget.recipe.preptime),
-            _recipeInfoRow("Difficulty", widget.recipe.difficulty),
-          ],
-        ),
-      ),
-    ]);
+    );
   }
 }
 
