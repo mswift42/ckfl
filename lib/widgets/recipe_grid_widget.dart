@@ -37,7 +37,10 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
       return Scaffold(
         appBar: appBar,
         body: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(
+            vertical: 0,
+            horizontal: 0.5,
+          ),
           child: Center(
             child: Hero(
               tag: widget.recipe.thumbnail,
