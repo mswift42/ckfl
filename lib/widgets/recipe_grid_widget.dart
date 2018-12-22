@@ -5,13 +5,15 @@ import 'package:ckfl/mockrecipedetail.dart';
 
 class RecipeGrid extends StatelessWidget {
   final List<Recipe> recipes;
+  final String searchterm;
 
-  RecipeGrid({Key key, this.recipes}) : super(key: key);
+  RecipeGrid({Key key, this.recipes, this.searchterm}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GridView.extent(
+    return Scaffold(
+      appBar: AppBar(title: Text(searchterm)),
+      body: GridView.extent(
           maxCrossAxisExtent: 260.0,
           children: recipes.map((i) => _RecipeSearchItem(recipe: i)).toList()),
     );
@@ -147,7 +149,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
           ),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 _recipeInfoRow("Rating", widget.recipe.rating),
                 _recipeInfoRow("Preptime: ", widget.recipe.preptime),
@@ -163,7 +165,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
 
 Padding _recipeInfoRow(String description, String detail) {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+    padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 8.0),
     child: Row(
       children: <Widget>[
         Text(description),
