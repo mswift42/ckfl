@@ -36,13 +36,13 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
       AppBar appBar = AppBar(title: Text(widget.recipe.title));
       return Scaffold(
         appBar: appBar,
-        body: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height:
-              MediaQuery.of(context).size.height - appBar.preferredSize.height,
-          child: Hero(
-            tag: widget.recipe.thumbnail,
-            child: RecipeViewer(recipe: widget.recipe),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Hero(
+              tag: widget.recipe.thumbnail,
+              child: RecipeViewer(recipe: widget.recipe),
+            ),
           ),
         ),
       );
@@ -125,11 +125,15 @@ class _RecipeViewerState extends State<RecipeViewer> {
     const double _kRecipeViewMaxWidth = 460.0;
     final bool fullWidth = _size.width < _kRecipeViewMaxWidth;
     return Container(
+      constraints: BoxConstraints(
+        maxWidth: fullWidth ? _size.width : _kRecipeViewMaxWidth,
+        maxHeight: _size.height,
+      ),
       child: Column(
         children: <Widget>[
           SizedBox(
             height: _size.height / 3,
-            width: _size.width,
+            width: fullWidth ? _size.width : _kRecipeViewMaxWidth,
             child: GestureDetector(
               onTap: () => _showRecipeDetail(context, widget.recipe.url),
               child: CachedNetworkImage(
