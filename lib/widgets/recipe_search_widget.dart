@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ckfl/widgets/recipe_grid_widget.dart';
+import 'package:ckfl/mockrecipes.dart';
 
 class RecipeSearchView extends StatefulWidget {
   @override
@@ -29,7 +30,13 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
 
   void _searchRecipe(String inp) {
     print(inp);
-    Navigator.pushNamed(context, '/recipegrid');
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => RecipeGrid(
+                  recipes: mockresultlist,
+                  searchterm: inp,
+                )));
   }
 
   @override
