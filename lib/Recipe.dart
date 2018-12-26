@@ -7,10 +7,19 @@ class Recipe {
   String difficulty;
   String preptime;
 
-  Recipe(this.title, this.subtitle, this.url,
-      this.thumbnail, this.rating, this.difficulty,
-      this.preptime);
+  Recipe(this.title, this.subtitle, this.url, this.thumbnail, this.rating,
+      this.difficulty, this.preptime);
 
+  factory Recipe.fromJson(Map<String, dynamic> json) {
+    return Recipe(
+        json['title'],
+        json['subtitle'],
+        json['url'],
+        json['thumbnail'],
+        json['rating'],
+        json['difficulty'],
+        json['preptime']);
+  }
 }
 
 class RecipeDetail {
@@ -23,9 +32,15 @@ class RecipeDetail {
   List<RecipeIngredient> ingredients;
   String method;
 
-  RecipeDetail({this.title, this.rating, this.difficulty,
-      this.preptime, this.cookingtime, this.thumbnail,
-      this.ingredients, this.method});
+  RecipeDetail(
+      {this.title,
+      this.rating,
+      this.difficulty,
+      this.preptime,
+      this.cookingtime,
+      this.thumbnail,
+      this.ingredients,
+      this.method});
 }
 
 class RecipeIngredient {
