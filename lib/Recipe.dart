@@ -41,6 +41,18 @@ class RecipeDetail {
       this.thumbnail,
       this.ingredients,
       this.method});
+
+  factory RecipeDetail.fromJson(Map<String, dynamic> json) {
+    return RecipeDetail(
+        title: json['title'],
+        rating: json['rating'],
+        difficulty: json['difficulty'],
+        preptime: json['preptime'],
+        cookingtime: json['cookingtime'],
+        thumbnail: json['thumbnail'],
+        ingredients: json['ingredients'],
+        method: json['method']);
+  }
 }
 
 class RecipeIngredient {
