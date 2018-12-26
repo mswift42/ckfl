@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ckfl/Recipe.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ckfl/mockrecipedetail.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class RecipeGrid extends StatelessWidget {
   final List<Recipe> recipes;
@@ -21,6 +23,21 @@ class RecipeGrid extends StatelessWidget {
 
   String searchUrl(String searchterm, String page) {
     return 'https://localhost:8080/search?query=$searchterm&page=$page';
+  }
+
+  Future<List<Recipe>> fetchRecipes(String searchterm, String page) async {
+    final url = searchUrl(searchterm, page);
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      var decoded = json.decode(response.body) as List;
+      if (decoded != null) {
+        return decoded.map((i) => Recipe.fromJson(i)).toList();
+      } else {
+        return [];
+      }
+    } else
+      throw Exception("Failed to load recipe.");
   }
 }
 
