@@ -18,6 +18,10 @@ class RecipeGrid extends StatelessWidget {
           children: recipes.map((i) => _RecipeSearchItem(recipe: i)).toList()),
     );
   }
+
+  String searchUrl(String searchterm, String page) {
+    return 'https://localhost:8080/search?query=$searchterm&page=$page';
+  }
 }
 
 class _RecipeSearchItem extends StatefulWidget {
