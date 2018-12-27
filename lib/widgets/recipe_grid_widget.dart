@@ -41,6 +41,26 @@ class RecipeGrid extends StatelessWidget {
   }
 }
 
+FutureBuilder<List<Recipe>> _showResultsBody(Future<List<Recipe>> handler) {
+  return FutureBuilder(
+      future: handler,
+      builder: (BuildContext context, AsyncSnapshot<List<Recipe>> snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.none:
+            return Container(child: Center(child: Text("Please try again.")));
+          case ConnectionState.active:
+          case ConnectionState.waiting:
+            return Container(child: Center(child: CircularProgressIndicator()));
+          case ConnectionState.done:
+            if (snapshot.hasError) {
+              return Text("Something went wrong.");
+            }
+            return RecipeGrid(recipes: snapshot.data);
+        }
+      }
+  );
+}
+
 class _RecipeSearchItem extends StatefulWidget {
   final Recipe recipe;
 
@@ -56,23 +76,23 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
   void _showRecipe(BuildContext context) {
     Navigator.push(context,
         MaterialPageRoute<void>(builder: (BuildContext context) {
-      AppBar appBar = AppBar(title: Text(widget.recipe.title));
-      return Scaffold(
-        appBar: appBar,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 0,
-            horizontal: 0.5,
-          ),
-          child: Center(
-            child: Hero(
-              tag: widget.recipe.thumbnail,
-              child: RecipeViewer(recipe: widget.recipe),
+          AppBar appBar = AppBar(title: Text(widget.recipe.title));
+          return Scaffold(
+            appBar: appBar,
+            body: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 0,
+                horizontal: 0.5,
+              ),
+              child: Center(
+                child: Hero(
+                  tag: widget.recipe.thumbnail,
+                  child: RecipeViewer(recipe: widget.recipe),
+                ),
+              ),
             ),
-          ),
-        ),
-      );
-    }));
+          );
+        }));
   }
 
   @override
@@ -147,7 +167,9 @@ class _RecipeViewerState extends State<RecipeViewer> {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery.of(context).size;
+    final Size _size = MediaQuery
+        .of(context)
+        .size;
     const double _kRecipeViewMaxWidth = 460.0;
     final bool fullWidth = _size.width < _kRecipeViewMaxWidth;
     return Container(
@@ -225,8 +247,8 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
             _RecipeMethodView(widget.recipeDetail),
             _RecipeInfoView(widget.recipeDetail),
           ])
-          //_tabBody(context),
-          ),
+        //_tabBody(context),
+      ),
     );
   }
 }
@@ -235,8 +257,14 @@ Widget _smallDetailThumbnail(BuildContext context, String thumbnail) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(0.5, 0, 0.5, 10.0),
     child: SizedBox(
-      height: MediaQuery.of(context).size.height / 4,
-      width: MediaQuery.of(context).size.width,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height / 4,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       child: CachedNetworkImage(fit: BoxFit.fitWidth, imageUrl: thumbnail),
     ),
   );
@@ -312,8 +340,14 @@ class _RecipeInfoView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0.5, 0, 0.5, 10.0),
           child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 3,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 3,
             child: CachedNetworkImage(
                 fit: BoxFit.fitWidth, imageUrl: _recipeDetail.thumbnail),
           ),
