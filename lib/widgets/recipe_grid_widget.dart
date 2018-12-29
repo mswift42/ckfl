@@ -20,25 +20,25 @@ class RecipeGrid extends StatelessWidget {
           children: recipes.map((i) => _RecipeSearchItem(recipe: i)).toList()),
     );
   }
+}
 
-  String searchUrl(String searchterm, String page) {
-    return 'https://localhost:8080/search?query=$searchterm&page=$page';
-  }
+String searchUrl(String searchterm, String page) {
+  return 'https://localhost:8080/search?query=$searchterm&page=$page';
+}
 
-  Future<List<Recipe>> fetchRecipes(String searchterm, String page) async {
-    final url = searchUrl(searchterm, page);
-    final response = await http.get(url);
+Future<List<Recipe>> fetchRecipes(String searchterm, String page) async {
+  final url = searchUrl(searchterm, page);
+  final response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      var decoded = json.decode(response.body) as List;
-      if (decoded != null) {
-        return decoded.map((i) => Recipe.fromJson(i)).toList();
-      } else {
-        return [];
-      }
-    } else
-      throw Exception("Failed to load recipe.");
-  }
+  if (response.statusCode == 200) {
+    var decoded = json.decode(response.body) as List;
+    if (decoded != null) {
+      return decoded.map((i) => Recipe.fromJson(i)).toList();
+    } else {
+      return [];
+    }
+  } else
+    throw Exception("Failed to load recipe.");
 }
 
 FutureBuilder<List<Recipe>> _showResultsBody(Future<List<Recipe>> handler) {
@@ -57,8 +57,7 @@ FutureBuilder<List<Recipe>> _showResultsBody(Future<List<Recipe>> handler) {
             }
             return RecipeGrid(recipes: snapshot.data);
         }
-      }
-  );
+      });
 }
 
 class _RecipeSearchItem extends StatefulWidget {
@@ -76,23 +75,23 @@ class _RecipeSearchItemState extends State<_RecipeSearchItem> {
   void _showRecipe(BuildContext context) {
     Navigator.push(context,
         MaterialPageRoute<void>(builder: (BuildContext context) {
-          AppBar appBar = AppBar(title: Text(widget.recipe.title));
-          return Scaffold(
-            appBar: appBar,
-            body: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 0,
-                horizontal: 0.5,
-              ),
-              child: Center(
-                child: Hero(
-                  tag: widget.recipe.thumbnail,
-                  child: RecipeViewer(recipe: widget.recipe),
-                ),
-              ),
+      AppBar appBar = AppBar(title: Text(widget.recipe.title));
+      return Scaffold(
+        appBar: appBar,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 0,
+            horizontal: 0.5,
+          ),
+          child: Center(
+            child: Hero(
+              tag: widget.recipe.thumbnail,
+              child: RecipeViewer(recipe: widget.recipe),
             ),
-          );
-        }));
+          ),
+        ),
+      );
+    }));
   }
 
   @override
@@ -167,9 +166,7 @@ class _RecipeViewerState extends State<RecipeViewer> {
 
   @override
   Widget build(BuildContext context) {
-    final Size _size = MediaQuery
-        .of(context)
-        .size;
+    final Size _size = MediaQuery.of(context).size;
     const double _kRecipeViewMaxWidth = 460.0;
     final bool fullWidth = _size.width < _kRecipeViewMaxWidth;
     return Container(
@@ -247,8 +244,8 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
             _RecipeMethodView(widget.recipeDetail),
             _RecipeInfoView(widget.recipeDetail),
           ])
-        //_tabBody(context),
-      ),
+          //_tabBody(context),
+          ),
     );
   }
 }
@@ -257,14 +254,8 @@ Widget _smallDetailThumbnail(BuildContext context, String thumbnail) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(0.5, 0, 0.5, 10.0),
     child: SizedBox(
-      height: MediaQuery
-          .of(context)
-          .size
-          .height / 4,
-      width: MediaQuery
-          .of(context)
-          .size
-          .width,
+      height: MediaQuery.of(context).size.height / 4,
+      width: MediaQuery.of(context).size.width,
       child: CachedNetworkImage(fit: BoxFit.fitWidth, imageUrl: thumbnail),
     ),
   );
@@ -340,14 +331,8 @@ class _RecipeInfoView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0.5, 0, 0.5, 10.0),
           child: SizedBox(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 3,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 3,
             child: CachedNetworkImage(
                 fit: BoxFit.fitWidth, imageUrl: _recipeDetail.thumbnail),
           ),
