@@ -18,7 +18,7 @@ class RecipeGrid extends StatelessWidget {
       body: Column(
         children: <Widget>[
           buildRecipeGridView(),
-
+          _showMoreRecipes(),
         ],
       ),
     );
@@ -28,6 +28,11 @@ class RecipeGrid extends StatelessWidget {
     return GridView.extent(
         maxCrossAxisExtent: 260.0,
         children: recipes.map((i) => _RecipeSearchItem(recipe: i)).toList());
+  }
+  Widget _showMoreRecipes() {
+    return FloatingActionButton(
+      onPressed: null,
+    );
   }
 }
 
