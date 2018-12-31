@@ -15,7 +15,12 @@ class RecipeGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(searchterm)),
-      body: buildRecipeGridView(),
+      body: Column(
+        children: <Widget>[
+          buildRecipeGridView(),
+
+        ],
+      ),
     );
   }
 
