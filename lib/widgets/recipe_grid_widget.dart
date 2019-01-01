@@ -15,12 +15,7 @@ class RecipeGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(searchterm)),
-      body: Column(
-        children: <Widget>[
-          buildRecipeGridView(),
-          _showMoreRecipes(),
-        ],
-      ),
+      body: buildRecipeGridView(),
     );
   }
 
@@ -29,6 +24,7 @@ class RecipeGrid extends StatelessWidget {
         maxCrossAxisExtent: 260.0,
         children: recipes.map((i) => _RecipeSearchItem(recipe: i)).toList());
   }
+
   Widget _showMoreRecipes() {
     return FloatingActionButton(
       onPressed: null,
