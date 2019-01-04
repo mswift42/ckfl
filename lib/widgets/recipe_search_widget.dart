@@ -28,17 +28,6 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
     super.dispose();
   }
 
-  void _searchRecipe(String inp) {
-    print(inp);
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => RecipeGrid(
-                  recipes: mockresultlist,
-                  searchterm: inp,
-                )));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,11 +40,23 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
             padding: const EdgeInsets.all(2.0),
             child: TextField(
               controller: controller,
-              onSubmitted: _searchRecipe,
+              onSubmitted: searchRecipe,
             ),
           )
         ],
       ),
     );
   }
+}
+
+void searchRecipe(BuildContext context, String inp) {
+  print(inp);
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => RecipeGrid(
+                recipes: mockresultlist,
+                searchterm: inp,
+                onChanged: null,
+              )));
 }
