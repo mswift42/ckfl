@@ -10,8 +10,8 @@ class RecipeGrid extends StatelessWidget {
   final String searchterm;
   ValueChanged<int> onChanged;
 
-  RecipeGrid({Key key, this.recipes, this.searchterm, 
-  this.onChanged}) : super(key: key);
+  RecipeGrid({Key key, this.recipes, this.searchterm, this.onChanged})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

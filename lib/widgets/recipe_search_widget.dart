@@ -40,12 +40,15 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
             padding: const EdgeInsets.all(2.0),
             child: TextField(
               controller: controller,
-              onSubmitted: searchRecipe,
+              onSubmitted: _searchRecipe,
             ),
           )
         ],
       ),
     );
+  }
+  void _searchRecipe(String inp) {
+    searchRecipe(context, inp);
   }
 }
 
