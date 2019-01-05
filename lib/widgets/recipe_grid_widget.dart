@@ -72,7 +72,7 @@ void searchRecipe(BuildContext context, String inp) {
 class RecipeGrid extends StatelessWidget {
   final List<Recipe> recipes;
   final String searchterm;
-  ValueChanged<int> onChanged;
+  final ValueChanged<int> onChanged;
 
   RecipeGrid({Key key, this.recipes, this.searchterm, this.onChanged})
       : super(key: key);
