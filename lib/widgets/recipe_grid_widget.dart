@@ -2,8 +2,72 @@ import 'package:flutter/material.dart';
 import 'package:ckfl/Recipe.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ckfl/mockrecipedetail.dart';
+import 'package:ckfl/mockrecipes.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+class RecipeSearchView extends StatefulWidget {
+  @override
+  _RecipeSearchViewState createState() => _RecipeSearchViewState();
+}
+
+class _RecipeSearchViewState extends State<RecipeSearchView> {
+  String searchquery = "";
+  final controller = TextEditingController();
+
+  void _setSearchQueryText() {
+    searchquery = controller.text;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(_setSearchQueryText);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(_setSearchQueryText);
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("CK"),
+      ),
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: TextField(
+              controller: controller,
+              onSubmitted: _searchRecipe,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  void _searchRecipe(String inp) {
+    searchRecipe(context, inp);
+  }
+}
+
+void searchRecipe(BuildContext context, String inp) {
+  print(inp);
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => RecipeGrid(
+                recipes: mockresultlist,
+                searchterm: inp,
+                onChanged: null,
+              )));
+}
 
 class RecipeGrid extends StatelessWidget {
   final List<Recipe> recipes;
