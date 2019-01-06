@@ -73,6 +73,7 @@ class RecipeGrid extends StatefulWidget {
   final List<Recipe> recipes;
   final String searchterm;
   final ValueChanged<int> onChanged;
+  int currentIndex = 0;
 
   RecipeGrid({Key key, this.recipes, this.searchterm, this.onChanged})
       : super(key: key);
@@ -110,14 +111,23 @@ class RecipeGridState extends State<RecipeGrid> {
 
   void _handleTap(int index) {
     if (index == 1) {
-      _currentPage++;
+      setState(() {
+        widget.currentIndex++;
+      });
+    } else {
+      setState(() {
+        if (widget.currentIndex > 0) {
+          widget.currentIndex--;
+        }
+      });
     }
   }
 
   GridView buildRecipeGridView() {
     return GridView.extent(
         maxCrossAxisExtent: 260.0,
-        children: widget.recipes.map((i) => _RecipeSearchItem(recipe: i)).toList());
+        children:
+            widget.recipes.map((i) => _RecipeSearchItem(recipe: i)).toList());
   }
 
   Widget _showMoreRecipes() {
