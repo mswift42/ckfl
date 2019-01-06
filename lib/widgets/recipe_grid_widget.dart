@@ -69,7 +69,7 @@ void searchRecipe(BuildContext context, String inp) {
               )));
 }
 
-class RecipeGrid extends StatelessWidget {
+class RecipeGrid extends StatefulWidget {
   final List<Recipe> recipes;
   final String searchterm;
   final ValueChanged<int> onChanged;
@@ -77,6 +77,13 @@ class RecipeGrid extends StatelessWidget {
   RecipeGrid({Key key, this.recipes, this.searchterm, this.onChanged})
       : super(key: key);
 
+  @override
+  RecipeGridState createState() {
+    return new RecipeGridState();
+  }
+}
+
+class RecipeGridState extends State<RecipeGrid> {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBar bottomNavBar = BottomNavigationBar(
@@ -91,19 +98,26 @@ class RecipeGrid extends StatelessWidget {
         ),
       ],
       type: BottomNavigationBarType.shifting,
+      onTap: _handleTap,
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(searchterm)),
+      appBar: AppBar(title: Text(widget.searchterm)),
       body: buildRecipeGridView(),
       bottomNavigationBar: bottomNavBar,
     );
   }
 
+  void _handleTap(int index) {
+    if (index == 1) {
+      _currentPage++;
+    }
+  }
+
   GridView buildRecipeGridView() {
     return GridView.extent(
         maxCrossAxisExtent: 260.0,
-        children: recipes.map((i) => _RecipeSearchItem(recipe: i)).toList());
+        children: widget.recipes.map((i) => _RecipeSearchItem(recipe: i)).toList());
   }
 
   Widget _showMoreRecipes() {
