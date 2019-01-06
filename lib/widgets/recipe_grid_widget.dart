@@ -79,17 +79,19 @@ class RecipeGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final BottomNavigationBar bottomNavBar =
-        BottomNavigationBar(items: <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: Icon(Icons.navigate_before),
-        title: Text("back"),
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.navigate_next),
-        title: Text("next"),
-      ),
-    ]);
+    final BottomNavigationBar bottomNavBar = BottomNavigationBar(
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.navigate_before),
+          title: Text("back"),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.navigate_next),
+          title: Text("next"),
+        ),
+      ],
+      type: BottomNavigationBarType.shifting,
+    );
 
     return Scaffold(
       appBar: AppBar(title: Text(searchterm)),
