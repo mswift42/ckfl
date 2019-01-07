@@ -138,14 +138,13 @@ class RecipeGridState extends State<RecipeGrid> {
 }
 
 Uri searchUrl(String searchterm, String page) {
-  Uri uri = Uri.http('localhost:8080', 'search', {'query':
-  searchterm, 'page': page});
+  Uri uri =
+      Uri.http('localhost:8080', 'search', {'query': searchterm, 'page': page});
   return uri;
 }
 
 Future<List<Recipe>> fetchRecipes(String searchterm, String page) async {
   final url = searchUrl(searchterm, page);
-  print(url);
   final response = await http.get(url);
   print(response.body);
 
