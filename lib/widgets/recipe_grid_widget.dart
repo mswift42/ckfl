@@ -58,15 +58,15 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
 }
 
 void searchRecipe(BuildContext context, String inp) {
-  print(inp);
   Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => RecipeGrid(
-                recipes: mockresultlist,
-                searchterm: inp,
-                onChanged: null,
-              )));
+          builder: (context) =>
+//              RecipeGrid(
+//                recipes: mockresultlist,
+//                searchterm: inp,
+//                onChanged: null,
+              _showResultsBody(fetchRecipes(inp, "1"))));
 }
 
 class RecipeGrid extends StatefulWidget {
@@ -168,7 +168,7 @@ FutureBuilder<List<Recipe>> _showResultsBody(Future<List<Recipe>> handler) {
             return Container(child: Center(child: CircularProgressIndicator()));
           case ConnectionState.done:
             if (snapshot.hasError) {
-              return Text("Something went wrong.");
+              return Text("Something went wrong: " + snapshot.error.toString());
             }
             return RecipeGrid(recipes: snapshot.data);
         }
