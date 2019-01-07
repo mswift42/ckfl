@@ -138,12 +138,14 @@ class RecipeGridState extends State<RecipeGrid> {
 }
 
 String searchUrl(String searchterm, String page) {
-  return 'https://localhost:8080/search?query=$searchterm&page=$page';
+  return 'http://localhost:8080/search?query=$searchterm&page=$page';
 }
 
 Future<List<Recipe>> fetchRecipes(String searchterm, String page) async {
   final url = searchUrl(searchterm, page);
+  print(url);
   final response = await http.get(url);
+  print(response.body);
 
   if (response.statusCode == 200) {
     var decoded = json.decode(response.body) as List;
