@@ -103,7 +103,7 @@ class RecipeGridState extends State<RecipeGrid> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.searchterm)),
+      appBar: AppBar(title: Text("search title")),
       body: buildRecipeGridView(),
       bottomNavigationBar: bottomNavBar,
     );
@@ -151,7 +151,8 @@ Future<List<Recipe>> fetchRecipes(String searchterm, String page) async {
   print(response);
 
   if (response.statusCode == 200) {
-    var decoded = json.decode(response.body) as List;
+    var u8 = utf8.decode(response.bodyBytes);
+    var decoded = json.decode(u8) as List;
     if (decoded != null) {
       return decoded.map((i) => Recipe.fromJson(i)).toList();
     } else {
