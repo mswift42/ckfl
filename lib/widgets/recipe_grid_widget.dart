@@ -125,7 +125,7 @@ class RecipeGridState extends State<RecipeGrid> {
 
   GridView buildRecipeGridView() {
     return GridView.extent(
-        maxCrossAxisExtent: 260.0,
+        maxCrossAxisExtent: 480.0,
         children:
             widget.recipes.map((i) => _RecipeSearchItem(recipe: i)).toList());
   }
