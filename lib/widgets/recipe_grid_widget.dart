@@ -73,7 +73,6 @@ class RecipeGrid extends StatefulWidget {
   final List<Recipe> recipes;
   final String searchterm;
   final ValueChanged<int> onChanged;
-  int currentIndex = 0;
 
   RecipeGrid({Key key, this.recipes, this.searchterm, this.onChanged})
       : super(key: key);
@@ -85,6 +84,7 @@ class RecipeGrid extends StatefulWidget {
 }
 
 class RecipeGridState extends State<RecipeGrid> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBar bottomNavBar = BottomNavigationBar(
@@ -112,12 +112,12 @@ class RecipeGridState extends State<RecipeGrid> {
   void _handleTap(int index) {
     if (index == 1) {
       setState(() {
-        widget.currentIndex++;
+        _currentIndex++;
       });
     } else {
       setState(() {
-        if (widget.currentIndex > 0) {
-          widget.currentIndex--;
+        if (_currentIndex > 0) {
+          _currentIndex--;
         }
       });
     }
