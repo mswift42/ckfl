@@ -5,6 +5,7 @@ import 'package:ckfl/mockrecipedetail.dart';
 import 'package:ckfl/mockrecipes.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
 
 class RecipeSearchView extends StatefulWidget {
   @override
@@ -59,15 +60,14 @@ class _RecipeSearchViewState extends State<RecipeSearchView> {
 
 void searchRecipe(BuildContext context, String inp) {
   Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) =>
-              RecipeGrid(
-                recipes: mockresultlist,
-                searchterm: inp,
-                onChanged: null,
-             // _showResultsBody(fetchRecipes(inp, "1")),
-              )),
+    context,
+    MaterialPageRoute(
+        builder: (context) => RecipeGrid(
+              recipes: mockresultlist,
+              searchterm: inp,
+              onChanged: null,
+              // _showResultsBody(fetchRecipes(inp, "1")),
+            )),
   );
 }
 
