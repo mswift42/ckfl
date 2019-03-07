@@ -62,11 +62,13 @@ void searchRecipe(BuildContext context, String inp) {
       context,
       MaterialPageRoute(
           builder: (context) =>
-//              RecipeGrid(
-//                recipes: mockresultlist,
-//                searchterm: inp,
-//                onChanged: null,
-              _showResultsBody(fetchRecipes(inp, "1"))));
+              RecipeGrid(
+                recipes: mockresultlist,
+                searchterm: inp,
+                onChanged: null,
+             // _showResultsBody(fetchRecipes(inp, "1")),
+              )),
+  );
 }
 
 class RecipeGrid extends StatefulWidget {
